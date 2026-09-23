@@ -1,0 +1,6 @@
+{
+  "name": "SAATH",
+  "description": "SAATH: Always with you. A 24x7 AI companion for emotional wellbeing, routines, focus, trusted circle, and calm living.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

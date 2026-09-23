@@ -1,0 +1,196 @@
+:root {
+  --primary: #1C3F30;
+  --primary-light: #285A45;
+  --primary-dark: #12281F;
+  --pale-green: #E8F2EC;
+  --soft-mint: #D6E8DE;
+  --deep-green: #0E3524;
+  --warm-white: #FAF9F6;
+  --dark-navy: #15222E;
+  --text-secondary: #58696D;
+  --border-color: #E2ECE5;
+  --mood-great: #2E7D32;
+  --mood-good: #4CAF50;
+  --mood-okay: #FFA000;
+  --mood-hard: #E53935;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background-color: #0E1813;
+  color: var(--dark-navy);
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+  user-select: none;
+}
+
+/* Phone Frame Styles */
+.phone-viewport-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 16px;
+  background: radial-gradient(circle at 50% 20%, #1A3428 0%, #0B1410 100%);
+}
+
+.android-frame {
+  width: 100%;
+  max-width: 412px;
+  height: 870px;
+  max-height: 94vh;
+  background-color: var(--warm-white);
+  border-radius: 42px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 0 10px #212C26;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+@media (max-width: 480px) {
+  .phone-viewport-container {
+    padding: 0;
+  }
+  .android-frame {
+    max-width: 100vw;
+    height: 100vh;
+    max-height: 100vh;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
+
+/* Status Bar */
+.status-bar {
+  height: 38px;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--dark-navy);
+  z-index: 50;
+  background-color: var(--warm-white);
+}
+
+.status-bar .icons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Screen Content */
+.screen-scroll-container {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  scroll-behavior: smooth;
+}
+
+.screen-scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Bottom Nav Bar */
+.bottom-nav {
+  height: 68px;
+  background: #FFFFFF;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 10px;
+  z-index: 40;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 16px;
+  transition: all 0.2s ease;
+  color: var(--text-secondary);
+}
+
+.nav-item.active {
+  color: var(--primary);
+  background-color: var(--pale-green);
+}
+
+.nav-item .label {
+  font-size: 10px;
+  font-weight: 700;
+}
+
+/* Animations */
+@keyframes breatheIn {
+  0% { transform: scale(0.9); }
+  100% { transform: scale(1.3); }
+}
+
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 0 0 rgba(28, 63, 48, 0.4); }
+  70% { box-shadow: 0 0 0 16px rgba(28, 63, 48, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(28, 63, 48, 0); }
+}
+
+.pulse-avatar {
+  animation: pulseGlow 2.5s infinite;
+}
+
+@keyframes pulseIdle {
+  0%, 100% { transform: scale(1); opacity: 0.3; }
+  50% { transform: scale(1.08); opacity: 0.7; }
+}
+
+@keyframes pulseListening {
+  0% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.22); opacity: 0.2; }
+  100% { transform: scale(1); opacity: 0.8; }
+}
+
+@keyframes pulseThinking {
+  0% { transform: rotate(0deg) scale(1); opacity: 0.4; }
+  50% { transform: rotate(180deg) scale(1.15); opacity: 0.8; }
+  100% { transform: rotate(360deg) scale(1); opacity: 0.4; }
+}
+
+@keyframes pulseSpeaking {
+  0%, 100% { transform: scale(1); opacity: 0.4; }
+  25% { transform: scale(1.12); opacity: 0.9; }
+  75% { transform: scale(1.04); opacity: 0.6; }
+}
+
+@keyframes pulseEncouraging {
+  0%, 100% { transform: scale(1); opacity: 0.4; }
+  50% { transform: scale(1.15); opacity: 0.85; filter: drop-shadow(0 0 8px #FF9800); }
+}
+
+@keyframes pulseConcerned {
+  0%, 100% { transform: scale(1); opacity: 0.4; }
+  50% { transform: scale(1.06); opacity: 0.8; filter: drop-shadow(0 0 6px #E53935); }
+}
+
+.pulse-idle { animation: pulseIdle 3.2s ease-in-out infinite; }
+.pulse-listening { animation: pulseListening 1.4s ease-out infinite; }
+.pulse-thinking { animation: pulseThinking 2.2s linear infinite; }
+.pulse-speaking { animation: pulseSpeaking 0.9s ease-in-out infinite; }
+.pulse-encouraging { animation: pulseEncouraging 1.8s ease-in-out infinite; }
+.pulse-concerned { animation: pulseConcerned 2.5s ease-in-out infinite; }
+
